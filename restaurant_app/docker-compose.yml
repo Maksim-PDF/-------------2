@@ -1,0 +1,9 @@
+services:
+  restaurant-app:
+    build: .
+    container_name: restaurant-app
+    ports:
+      - "6080:6080"
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped

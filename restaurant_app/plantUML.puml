@@ -1,0 +1,36 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam monochrome true
+skinparam shadowing false
+
+' Абстрактный класс
+abstract class MenuItem {
+  + name : str
+  + price : float
+  + cooking_time : int
+  + {abstract} get_info()
+  + __str__() : str
+}
+
+' Наследник
+class Dish {
+  + weight : int
+  + get_info() : str
+}
+
+' Класс заказа
+class Order {
+  + table_number : int
+  + items : list
+  - _discount : float
+  + add_item(item: MenuItem)
+  + discount() : float <<getter>>
+  + discount(value: float) <<setter>>
+  + __len__() : int
+  + __str__() : str
+}
+
+' Связи (Relationships)
+MenuItem <|-- Dish : "наследование"
+Order o-- "1..*" MenuItem : "содержит >"
+@enduml
